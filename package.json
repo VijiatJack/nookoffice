@@ -11,6 +11,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.6.11"
+    "@astrojs/react": "^1.2.2",
+    "@types/node": "^18.11.9",
+    "@types/yt-player": "^3.5.1",
+    "astro": "^1.6.11",
+    "node": "^19.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yt-player": "^3.6.1"
   }
 }

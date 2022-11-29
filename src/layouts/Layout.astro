@@ -40,6 +40,17 @@ const { title } = Astro.props;
 		margin: 0;
 		padding: 0;
 	}
+
+	@font-face {
+		font-family: 'Arial Rounded MT';
+		src: url('./Arial_Rounded_MT.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	*{
+		font-family: 'Arial Rounded MT', sans-serif;
+	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
