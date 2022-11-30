@@ -1,0 +1,146 @@
+.todo-container * {
+	transition: all 0.25s ease;
+}
+.todo-container {
+	position: absolute;
+	background-color: #fffdf2;
+	padding: 1rem;
+	border-radius: 25px 25px 0px 0px;
+
+	bottom: 0;
+	right: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-width: 300px;
+
+	z-index: 10;
+}
+
+.todo-container .pulley {
+	width: 50%;
+	height: 10px;
+	background-color: #756a56;
+	border-radius: 10rem;
+}
+
+.todo-container .pulley:hover {
+	cursor: pointer;
+	height: 15px;
+	background-color: #403a2e;
+}
+
+.todo-container .content {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+
+	height: 0;
+	width: 100%;
+	padding: 0;
+	padding-bottom: 0;
+
+	overflow: hidden;
+}
+
+.todo-container .content ul {
+	width: 100%;
+	flex: 1;
+	height: 100%;
+	padding: 0;
+}
+.todo-container .content ul li {
+	background: #55b7a3;
+	border-radius: 20px;
+	padding: 1rem;
+
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: normal;
+
+	margin-bottom: 10px;
+}
+.todo-container .content ul li label {
+	flex-grow: 1;
+}
+
+.todo-container form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.todo-container form {
+	margin-bottom: 1em;
+	width: 100%;
+}
+.todo-container form > * {
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.todo-container form input:first-child {
+	border: 1px solid #9e9ea7;
+	box-shadow: none;
+	border-radius: 10px;
+
+	background-color: #fff;
+	color: #9e9ea7;
+	padding: 1rem 0.5rem;
+	width: calc(100% - 1.25rem);
+}
+
+.todo-container form input:last-child {
+	border: 1px solid #9e9ea7;
+	box-shadow: none;
+	border-radius: 10px;
+
+	background-color: #fff;
+	padding: 1rem 0;
+	width: 100%;
+}
+
+.todo-container form input:hover,
+.todo-container form input:focus {
+	border-color: #55b7a3;
+	outline: #55b7a3;
+}
+.tdremove {
+	padding: 1rem;
+	width: 0.125rem;
+	height: 0.125rem;
+	background-color: #fff;
+	border-radius: 25em;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #55b7a3;
+	font-size: 1.2rem;
+	line-height: 0;
+}
+
+.tdremove > * {
+	margin-bottom: 5px;
+}
+
+.tdremove:hover {
+	cursor: pointer;
+	color: #0e3132;
+}
+
+@media only screen and (max-width: 1100px) {
+	.todo-container {
+		left: 0;
+		right: 0;
+		margin: auto;
+
+		width: 90%;
+	}
+}

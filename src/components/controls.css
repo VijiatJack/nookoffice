@@ -133,6 +133,17 @@ input[type="range"]:focus::-ms-fill-upper {
 		justify-content: center;
 		align-items: center;
 	}
+	.player-controls p {
+		text-align: left;
+		justify-content: flex-end;
+		position: relative;
+	}
+
+	.player-controls p:before {
+		content: "Volume:";
+		position: absolute;
+		left: 0;
+	}
 	#range {
 		width: 100%;
 		margin: 1rem 0;
@@ -140,5 +151,16 @@ input[type="range"]:focus::-ms-fill-upper {
 
 	.ctrl-wrapper:last-child {
 		margin-right: 0;
+	}
+}
+
+@media only screen and (max-width: 650px) {
+	.player-controls p:before {
+		content: "";
+	}
+	.player-controls p {
+		text-align: left;
+		justify-content: flex-start;
+		position: relative;
 	}
 }

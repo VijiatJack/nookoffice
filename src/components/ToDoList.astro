@@ -1,0 +1,102 @@
+---
+import "./todo.css";
+---
+
+<script>
+	// pulley
+	function togglePulley() {
+		const contents = document.getElementById("tasks");
+		if (contents) {
+			if (contents.style.height != "0px") {
+				contents.style.height = "0px";
+				contents.style.padding = "0px";
+			} else {
+				contents.style.height = "100%";
+				contents.style.padding = "2rem 0";
+			}
+		}
+	}
+
+	const pulleys = document.querySelectorAll("#pulley");
+	pulleys.forEach((pulley) => {
+		var volume;
+		pulley.addEventListener("click", () => {
+			togglePulley();
+		});
+	});
+
+	// end of pulley
+	const formToAddItemsID = document.getElementById("formToAddItemsID");
+	const listOfItemsID = document.getElementById("listOfItemsID");
+	const parsingLocalStorageItems =
+		JSON.parse(localStorage.getItem("items")) || [];
+
+	function listItemsFn(e: any) {
+		e.preventDefault();
+		const itemText = this.querySelector("[name=item]").value;
+		const item = {
+			itemText,
+			checkedOff: false,
+			deleted: false,
+		};
+		parsingLocalStorageItems.push(item);
+		populateList(parsingLocalStorageItems, listOfItemsID);
+		localStorage.setItem("items", JSON.stringify(parsingLocalStorageItems));
+		this.reset();
+	}
+
+	function populateList(itemArray = [], itemList) {
+		itemList.innerHTML = itemArray
+			.map((item, i) => {
+				return `
+		  <li>
+		  <label for="item${i}">${
+					item.itemText
+				}</label><span class="tdremove" data-index=${i} id="removed${i}" ${
+					item.deleted ? true : false
+				}>&#10004;</span>
+		  </li>
+	 `;
+			})
+			.join("");
+	}
+
+	function checkedOffFn(e: any) {
+		if (!e.target.matches("input")) return;
+		const el = e.target;
+		const index = el.dataset.index;
+		parsingLocalStorageItems[index].checkedOff =
+			!parsingLocalStorageItems[index].checkedOff;
+		localStorage.setItem("items", JSON.stringify(parsingLocalStorageItems));
+		populateList(parsingLocalStorageItems, listOfItemsID);
+	}
+
+	function removeItemFn(e: any) {
+		if (!e.target.matches("span")) return;
+		const element = e.target;
+		const ind = element.dataset.index;
+		parsingLocalStorageItems[ind].deleted =
+			!parsingLocalStorageItems[ind].deleted;
+		console.log(parsingLocalStorageItems[ind].deleted);
+		parsingLocalStorageItems.splice([ind], 1);
+		localStorage.setItem("items", JSON.stringify(parsingLocalStorageItems));
+		populateList(parsingLocalStorageItems, listOfItemsID);
+	}
+
+	formToAddItemsID?.addEventListener("submit", listItemsFn);
+	listOfItemsID?.addEventListener("click", checkedOffFn);
+	listOfItemsID?.addEventListener("click", removeItemFn);
+
+	populateList(parsingLocalStorageItems, listOfItemsID);
+</script>
+
+<div class="todo-container">
+	<div class="pulley" id="pulley"></div>
+	<div class="content" id="tasks">
+		<ul id="listOfItemsID" class="items"></ul>
+		<form id="formToAddItemsID" class="addItems" autocomplete="off">
+			<input type="text" name="item" placeholder="Type task.." required />
+			<input type="submit" value="Add" />
+		</form>
+	</div>
+</div>

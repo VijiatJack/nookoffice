@@ -31,19 +31,11 @@ import "./controls.css";
 	function refreshGIF() {
 		var feed = document.getElementById("feed");
 
-		function newFeed() {
-			var currentFeed = feed.src;
-			var newURL: string = `./video-feed/bg_${parseInt(
-				Math.random() * (8 - 1) + 1
-			)}.gif`;
-			if (newURL == currentFeed) {
-				newFeed();
-			} else {
-				return newURL;
-			}
-		}
 		if (feed) {
-			feed.setAttribute("src", newFeed());
+			feed.setAttribute(
+				"src",
+				`./video-feed/bg_${parseInt(Math.random() * (8 - 1) + 1)}.gif`
+			);
 		}
 	}
 
