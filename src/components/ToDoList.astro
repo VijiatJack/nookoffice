@@ -1,17 +1,30 @@
 ---
 import "./todo.css";
+import Check from "./check.astro";
 ---
 
 <script>
 	// pulley
+	const contents = document.getElementById("tasks");
+	if (contents) {
+		contents.style.height = "0px";
+	}
+
 	function togglePulley() {
-		const contents = document.getElementById("tasks");
-		if (contents) {
+		const container = document.getElementById("todo");
+		if (contents && container) {
 			if (contents.style.height != "0px") {
 				contents.style.height = "0px";
+				container.style.position = "static";
+				container.style.margin = "1em 0";
 				contents.style.padding = "0px";
+				container.style.height = "unset";
 			} else {
 				contents.style.height = "100%";
+				contents.style.maxHeight = "100vh";
+				container.style.margin = "auto";
+				container.style.height = "100%";
+				container.style.position = "absolute";
 				contents.style.padding = "2rem 0";
 			}
 		}
@@ -19,7 +32,6 @@ import "./todo.css";
 
 	const pulleys = document.querySelectorAll("#pulley");
 	pulleys.forEach((pulley) => {
-		var volume;
 		pulley.addEventListener("click", () => {
 			togglePulley();
 		});
@@ -54,7 +66,22 @@ import "./todo.css";
 					item.itemText
 				}</label><span class="tdremove" data-index=${i} id="removed${i}" ${
 					item.deleted ? true : false
-				}>&#10004;</span>
+				}><svg
+					data-index=${i} 
+					id="removed${i}" 
+					${item.deleted ? true : false}
+					width="17"
+					height="14"
+					viewBox="0 0 17 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+				<rect class="btn" x="0" y="0" width="17" height="17" fill="none" onclick="removeItemFn();" />
+					<path
+						d="M5.21126 9.58309L13.8068 0.847359C14.0739 0.57591 14.4138 0.440186 14.8266 0.440186C15.2394 0.440186 15.5793 0.57591 15.8464 0.847359C16.1135 1.11881 16.2471 1.46429 16.2471 1.8838C16.2471 2.30331 16.1135 2.64879 15.8464 2.92024L6.23107 12.6924C5.93969 12.9885 5.59976 13.1366 5.21126 13.1366C4.82276 13.1366 4.48282 12.9885 4.19144 12.6924L0.40357 8.84277C0.136476 8.57132 0.00292969 8.22584 0.00292969 7.80633C0.00292969 7.38682 0.136476 7.04134 0.40357 6.76989C0.670663 6.49844 1.0106 6.36271 1.42338 6.36271C1.83616 6.36271 2.1761 6.49844 2.44319 6.76989L5.21126 9.58309Z"
+						fill="#55B7A3"></path>
+				</svg>
+				</span>
 		  </li>
 	 `;
 			})
@@ -72,7 +99,6 @@ import "./todo.css";
 	}
 
 	function removeItemFn(e: any) {
-		if (!e.target.matches("span")) return;
 		const element = e.target;
 		const ind = element.dataset.index;
 		parsingLocalStorageItems[ind].deleted =
@@ -90,13 +116,15 @@ import "./todo.css";
 	populateList(parsingLocalStorageItems, listOfItemsID);
 </script>
 
-<div class="todo-container">
-	<div class="pulley" id="pulley"></div>
-	<div class="content" id="tasks">
-		<ul id="listOfItemsID" class="items"></ul>
-		<form id="formToAddItemsID" class="addItems" autocomplete="off">
-			<input type="text" name="item" placeholder="Type task.." required />
-			<input type="submit" value="Add" />
-		</form>
+<div class="todo-wrapper">
+	<div class="todo-container" id="todo" style="">
+		<div class="pulley" id="pulley"><p></p></div>
+		<div class="content" id="tasks">
+			<ul id="listOfItemsID" class="items"></ul>
+			<form id="formToAddItemsID" class="addItems" autocomplete="off">
+				<input type="text" name="item" placeholder="Type task.." required />
+				<input type="submit" value="Create" />
+			</form>
+		</div>
 	</div>
 </div>

@@ -162,5 +162,6 @@ input[type="range"]:focus::-ms-fill-upper {
 		text-align: left;
 		justify-content: flex-start;
 		position: relative;
+		flex-direction: column;
 	}
 }

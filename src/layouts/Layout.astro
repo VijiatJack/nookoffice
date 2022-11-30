@@ -86,13 +86,30 @@ const { title } = Astro.props;
 
 	.creds {
 		position: absolute;
-		bottom: 0;
+		top: 0;
 		left: 0;
 		padding: 1rem;
 	}
 	.creds p,
 	.creds a {
 		font-size: 0.75rem;
-		color: #000 !important;
+		color: #000;
+		z-index: -1;
+	}
+
+	@media only screen and (max-width: 1100px) {
+		.creds p,
+		.creds a {
+			color: #fff;
+		}
+
+		.creds {
+			top: 0;
+			left: 0;
+			right: 0;
+			margin: 1rem auto;
+
+			text-align: center;
+		}
 	}
 </style>

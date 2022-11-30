@@ -10,13 +10,15 @@ main {
 	flex-direction: column;
 
 	overflow: hidden;
+	margin-top: -1rem;
 
 	width: calc(100vw - 2rem);
-	height: calc(100vh - 8rem);
+	height: calc(100vh - 5rem);
 }
 .video-feed {
 	aspect-ratio: 16 / 9;
 	height: 75%;
+	position: relative;
 }
 img {
 	width: 100%;
