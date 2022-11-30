@@ -7,6 +7,12 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
 	integrations: [react()],
+	vite: {
+		ssr: {
+			noExternal: ["astro", "@astrojs/image"],
+		},
+	},
 	output: "server",
 	adapter: vercel(),
 });
+
