@@ -1,0 +1,242 @@
+---
+import "./controls.css";
+---
+
+<script>
+	import YoutubePlayer from "yt-player";
+	const player = new YoutubePlayer("#player", {
+		autoplay: true,
+		keyboard: false,
+		controls: false,
+		annotations: false,
+	});
+	const feedback = document.getElementById("feedback");
+	player.load("44MCworZf78");
+	player.setVolume(100);
+
+	function play() {
+		player.unMute();
+		player.play();
+		if (feedback) {
+			feedback.innerHTML = "Playing...";
+		}
+	}
+	function pause() {
+		player.mute();
+		player.pause();
+		if (feedback) {
+			feedback.innerHTML = "Paused";
+		}
+	}
+	function refreshGIF() {
+		var feed = document.getElementById("feed");
+
+		function newFeed() {
+			var currentFeed = feed.src;
+			var newURL: string = `./video-feed/bg_${parseInt(
+				Math.random() * (8 - 1) + 1
+			)}.gif`;
+			if (newURL == currentFeed) {
+				newFeed();
+			} else {
+				return newURL;
+			}
+		}
+		if (feed) {
+			feed.setAttribute("src", newFeed());
+		}
+	}
+
+	// event handling
+	// Find all buttons with the `alert` class on the page.
+	const controls = document.querySelectorAll("img.control");
+	const volumeControls = document.querySelectorAll("#range");
+
+	volumeControls.forEach((volumeControl) => {
+		var volume;
+		volumeControl.addEventListener("input", () => {
+			volume = volumeControl.value;
+			player.setVolume(parseFloat(volume));
+		});
+	});
+
+	// Handle clicks on each button.
+	controls.forEach((control) => {
+		control.addEventListener("click", () => {
+			switch (control.id) {
+				case "pause":
+					pause();
+					break;
+				case "play":
+					play();
+					break;
+				case "refresh":
+					refreshGIF();
+					break;
+				default:
+					null;
+			}
+		});
+		control.addEventListener("mouseover", () => {
+			switch (control.id) {
+				case "pause":
+					if (feedback) {
+						feedback.innerHTML =
+							"<span class='feedback'>Press to Pause..</span>";
+					}
+					break;
+				case "play":
+					if (feedback) {
+						feedback.innerHTML =
+							"<span class='feedback'>Press to Play..</span>";
+					}
+					break;
+				case "refresh":
+					if (feedback) {
+						feedback.innerHTML =
+							"<span class='feedback'>Press to Refresh GIF..</span>";
+					}
+					break;
+			}
+		});
+	});
+	// refresh video
+
+	// time
+	var today = new Date();
+	var timeHours = today.getHours();
+
+	function updateVideo() {
+		function autoPlay(video: string) {
+			player.load(video, true);
+		}
+
+		switch (timeHours) {
+			case 0:
+				autoPlay("V_9Nfwk9yWo");
+				break;
+			case 1:
+				autoPlay("E-GeGj9eD_Y");
+				break;
+			case 2:
+				autoPlay("xJMbtElUepc");
+				break;
+			case 3:
+				autoPlay("Otx87vJ4M1Y");
+				break;
+			case 4:
+				autoPlay("M2aRoiXBU2I");
+				break;
+			case 5:
+				autoPlay("u_VzHJW3HZc");
+				break;
+			case 6:
+				autoPlay("yQ7dheIA96A");
+				break;
+			case 7:
+				autoPlay("5CamjNTPZus");
+				break;
+			case 8:
+				autoPlay("EAp1h3pHa_c");
+				break;
+			case 9:
+				autoPlay("A6wCdDn-HzA");
+				break;
+			case 10:
+				autoPlay("wU7_1ZcjjPc");
+				break;
+			case 11:
+				autoPlay("rHHJpZQe3M0");
+				break;
+			case 12:
+				autoPlay("zxkVYPjhdaM");
+				break;
+			case 13:
+				autoPlay("_1tBg0-8bFI");
+				break;
+			case 14:
+				autoPlay("uzSuYtVZ764");
+				break;
+			case 15:
+				autoPlay("2Dkm3D4ep8w");
+				break;
+			case 16:
+				autoPlay("yeYxyorD-B8");
+				break;
+			case 17:
+				autoPlay("vc1zlXMyZow");
+				break;
+			case 18:
+				autoPlay("TNpieyL1Tt4");
+				break;
+			case 19:
+				autoPlay("iv7Xg2b1Sig");
+				break;
+			case 20:
+				autoPlay("xycWcS8G0EU");
+				break;
+			case 21:
+				autoPlay("LXhG5Lajj7I");
+				break;
+			case 22:
+				autoPlay("DrQSk1Pch8w");
+				break;
+			case 23:
+				autoPlay("QC5Y4TvkMIo");
+				break;
+			default:
+				null;
+		}
+		console.log("Updating...");
+	}
+
+	// declaring vars
+	var pastHour: any;
+	var timeMonth, timeDay, timeYear, timeMinutes;
+
+	function updateTime() {
+		today = new Date();
+		timeMonth = today.getMonth();
+		timeDay = today.getDay();
+		timeYear = today.getFullYear();
+
+		timeHours = today.getHours();
+		timeMinutes = today.getMinutes();
+
+		if (pastHour != timeHours) {
+			updateVideo();
+		}
+	}
+	updateTime();
+	updateVideo();
+	setInterval(() => {
+		pastHour = timeHours;
+		updateTime();
+	}, 1000);
+</script>
+
+<div class="player-controls">
+	<div class="hidden">
+		<div loop="1" id="player"></div>
+	</div>
+	<div class="ctrl-wrapper">
+		<img class="control" id="pause" src="./player-controls/pause.svg" />
+		<img class="control" id="play" src="./player-controls/play.svg" />
+		<img class="control" id="refresh" src="./player-controls/refresh.svg" />
+	</div>
+	<p id="feedback">
+		Press to Play Manually. Make sure browser autoplay is turned on.
+	</p>
+
+	<div class="right-ctrl">
+		<input
+			type="range"
+			min="1"
+			max="100"
+			value="50"
+			step="5"
+			class="slider"
+			id="range"
+		/>
+	</div>
+</div>
