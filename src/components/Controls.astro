@@ -193,6 +193,8 @@ import "./controls.css";
 	// declaring vars
 	var pastHour: any;
 	var timeMonth, timeDay, timeYear, timeMinutes;
+	var visualDate = document.getElementById("locale-date");
+	var visualTime = document.getElementById("locale-time");
 
 	function updateTime() {
 		today = new Date();
@@ -203,16 +205,44 @@ import "./controls.css";
 		timeHours = today.getHours();
 		timeMinutes = today.getMinutes();
 
+		// update video
 		if (pastHour != timeHours) {
 			updateVideo();
 		}
 	}
+
+	function refreshClock() {
+		// refresh visual clock
+		var newDate = today.toLocaleDateString([], {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		});
+		var newTime = today.toLocaleTimeString([], {
+			hour: "2-digit",
+			minute: "2-digit",
+		});
+		if (visualDate && newDate != visualDate.innerHTML) {
+			visualDate.innerHTML = newDate;
+		}
+		if (visualTime && newTime != visualTime.innerHTML) {
+			visualTime.innerHTML = newTime;
+		}
+	}
+
+	refreshClock();
 	updateTime();
 	updateVideo();
+
 	setInterval(() => {
 		pastHour = timeHours;
 		updateTime();
 	}, 1000);
+
+	setInterval(() => {
+		refreshClock();
+	}, 60000);
 </script>
 
 <div class="player-controls">

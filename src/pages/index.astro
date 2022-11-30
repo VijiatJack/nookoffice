@@ -4,11 +4,16 @@ import Controls from "../components/Controls.astro";
 import "./index.css";
 ---
 
-<script></script>
 <Layout title="NookOffice">
 	<main>
 		<div class="video-feed">
-			<img class="feed-img" id="feed" src="./video-feed/bg_4.gif" />
+			<div class="img-wrapper">
+				<img class="feed-img" id="feed" src="./video-feed/bg_4.gif" />
+				<div class="dates">
+					<p id="locale-date"></p>
+					<p id="locale-time"></p>
+				</div>
+			</div>
 			<Controls />
 		</div>
 	</main>

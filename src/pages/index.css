@@ -14,28 +14,39 @@ main {
 	width: calc(100vw - 2rem);
 	height: calc(100vh - 8rem);
 }
-h1 {
-	font-size: 3rem;
-	font-weight: 800;
-	margin: 0;
-}
 .video-feed {
 	aspect-ratio: 16 / 9;
 	height: 75%;
 }
 img {
 	width: 100%;
-	height: 100%;
+	height: 600px;
 	border-radius: 25px;
 	object-position: bottom;
 	object-fit: cover;
 }
+.img-wrapper {
+	position: relative;
+}
+.video-feed .dates {
+	position: absolute;
+	bottom: 0;
+	left: 0;
 
+	margin: 1rem;
+	font-size: 1.25rem;
+	color: #fffdf2;
+}
 @media only screen and (max-width: 1100px) {
 	.video-feed {
 		aspect-ratio: unset;
 	}
-
+	.img-wrapper {
+		height: 95%;
+	}
+	img {
+		height: 100%;
+	}
 	main {
 		width: calc(100vw - 2rem);
 		height: calc(100vh - 2rem);

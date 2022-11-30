@@ -17,23 +17,40 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<slot />
+		<div class="creds">
+			<p>
+				developed by <a href="https://github.com/cjlaserna" target="_blank">
+					@clasernaj</a
+				>
+			</p>
+			<p>
+				<a href="https://github.com/cjlaserna/nookoffice">
+					view artists, project files, etc.
+				</a>
+			</p>
+		</div>
 	</body>
 </html>
 <style is:global>
 	:root {
 		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		--accent-gradient: linear-gradient(
+			45deg,
+			rgb(var(--accent)),
+			#da62c4 30%,
+			white 60%
+		);
 	}
 	html {
 		font-family: system-ui, sans-serif;
 
-		background-color: #F6F6F6;
+		background-color: #f6f6f6;
 		background-image: url("./animalcrossing_pattern.jpg");
 		background-repeat: repeat-x;
 		background-position: center;
 		background-size: cover;
 	}
-	body{
+	body {
 		width: 100vw;
 		height: 100vh;
 
@@ -42,17 +59,40 @@ const { title } = Astro.props;
 	}
 
 	@font-face {
-		font-family: 'Arial Rounded MT';
-		src: url('./Arial_Rounded_MT.ttf') format('truetype');
+		font-family: "Arial Rounded MT";
+		src: url("./Arial_Rounded_MT.ttf") format("truetype");
 		font-weight: normal;
 		font-style: normal;
 	}
 
-	*{
-		font-family: 'Arial Rounded MT', sans-serif;
+	@font-face {
+		font-family: "Arial Rounded MT Bold";
+		src: url("./arialmtbold.ttf") format("truetype");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	* {
+		font-family: "Arial Rounded MT Bold", sans-serif;
+	}
+	p {
+		margin: 0;
+		color: #fffdf2;
 	}
 	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+			DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+
+	.creds {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 1rem;
+	}
+	.creds p,
+	.creds a {
+		font-size: 0.75rem;
+		color: #000 !important;
 	}
 </style>
