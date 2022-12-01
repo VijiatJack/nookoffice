@@ -74,11 +74,11 @@ import "./controls.css";
 	volumeControls.forEach((volumeControl) => {
 		var volume;
 		volumeControl.addEventListener("input", () => {
-			volume = volumeControl.value;
+			volume = parseFloat(volumeControl.value);
 			players.forEach((ytplayer) => {
-				player.setVolume(parseFloat(volume) / 2);
+				ytplayer.setVolume(volume / 2);
 			});
-			player.setVolume(parseFloat(volume));
+			player.setVolume(volume);
 		});
 	});
 

@@ -1,0 +1,106 @@
+---
+---
+
+<script>
+	var lamp = document.getElementById("light-switch");
+	var film = document.getElementById("film");
+
+	film.style.display = "none";
+
+	lamp?.addEventListener("click", () => {
+		lamp?.classList.add("pull-down");
+		if (film?.style.display == "none") {
+			film.style.display = "block";
+		} else {
+			film.style.display = "none";
+		}
+	});
+
+	lamp?.addEventListener("animationend", () => {
+		lamp?.classList.remove("pull-down");
+	});
+</script>
+
+<!-- https://mattkeaveney.com/articles/2021_01_28_creating_a_css_js_lamp_pull_chain -->
+<div id="light-switch">
+	<div class="rope"></div>
+	<div class="knob"><span>&#9864;<span></span></span></div>
+</div>
+<div id="film"></div>
+
+<style>
+	#light {
+		position: absolute;
+		top: 0;
+		right: -10em;
+		display: block;
+		opacity: 0.5;
+	}
+	#light-switch {
+		position: fixed;
+		top: -1.5em;
+		right: 1em;
+		text-align: center;
+		cursor: pointer;
+		z-index: 1021;
+	}
+
+	#light-switch div.rope {
+		width: 1.25em;
+		height: 20em;
+		background-color: #fffdf2;
+		border-radius: 25px;
+		margin: 0 auto;
+		margin-top: -1em;
+	}
+
+	#light-switch div.rounded-circle:last-of-type {
+		border-radius: 0px 0px 26px 26px;
+	}
+
+	#light-switch div.knob {
+		color: #fac403;
+		font-size: 3em;
+		font-family: sans-serif;
+	}
+
+	#light-switch div.knob span {
+		font-size: 0.8em;
+		position: relative;
+		bottom: 2px;
+	}
+
+	#film {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+
+		background-color: rgb(0, 0, 0);
+		display: none;
+		opacity: 0.5;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	.pull-down {
+		animation: PullCord 0.6s ease-in;
+	}
+
+	@keyframes PullCord {
+		0%,
+		100% {
+			top: -1em;
+		}
+		50% {
+			top: 0;
+		}
+	}
+
+	@media only screen and (max-width: 1100px) {
+		#light-switch {
+			display: none;
+		}
+	}
+</style>

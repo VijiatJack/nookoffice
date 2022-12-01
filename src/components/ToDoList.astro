@@ -121,7 +121,6 @@ import Creds from "./Creds.astro";
 		const ind = element.dataset.index;
 		parsingLocalStorageItems[ind].deleted =
 			!parsingLocalStorageItems[ind].deleted;
-		console.log(parsingLocalStorageItems[ind].deleted);
 		parsingLocalStorageItems.splice([ind], 1);
 		localStorage.setItem("items", JSON.stringify(parsingLocalStorageItems));
 		populateList(parsingLocalStorageItems, listOfItemsID);
