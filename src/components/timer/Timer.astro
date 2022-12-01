@@ -42,12 +42,34 @@ const { end } = Astro.props;
 
 		// displaying text
 		let textProgress = document.getElementById("current");
+
+		let minutesInvert = Math.round(end - minutes - 1);
+		let secondsInvert = Math.round(60 - seconds);
+
 		if (textProgress) {
-			textProgress.innerHTML = `${
-				Math.trunc(end - minutes - 1) < 10 ? "0" : ""
-			}${Math.trunc(end - minutes - 1)}:${
-				Math.trunc(60 - seconds) < 10 ? "0" : ""
-			}${60 - seconds}`;
+			var text = "";
+
+			if (secondsInvert == 60) {
+				minutesInvert += 1;
+				secondsInvert = 0;
+			}
+
+			if (minutesInvert < 10) {
+				text += "0";
+				text += minutesInvert;
+			} else {
+				text += minutesInvert;
+			}
+
+			text += ":";
+			if (secondsInvert < 10) {
+				text += "0";
+				text += secondsInvert;
+			} else {
+				text += secondsInvert;
+			}
+
+			textProgress.innerHTML = text;
 		}
 		// for progress bar
 		let visualProgress = document.getElementById("progressBar");
@@ -85,6 +107,7 @@ const { end } = Astro.props;
 		height: 25px;
 		display: flex;
 		justify-content: flex-start;
+		overflow: clip;
 		border-bottom: 1px dashed rgba(0, 0, 0, 1);
 	}
 
