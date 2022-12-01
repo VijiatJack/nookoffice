@@ -37,7 +37,7 @@ const { title } = Astro.props;
 
 				const feedback = document.getElementById("feedback");
 				if (feedback) {
-					document.getElementById("feedback").innerHTML = "Press to Play..";
+					feedback.innerHTML = "Press to Play..";
 				}
 
 				navigator.clipboard.writeText(window.location.toString());
