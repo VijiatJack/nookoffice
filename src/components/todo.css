@@ -7,6 +7,9 @@
 .todo-container {
 	transition: all 1s ease-in-out !important;
 }
+.todo-container > * {
+	pointer-events: auto;
+}
 .todo-container {
 	margin-top: 10px;
 	position: static;
@@ -32,6 +35,7 @@
 	width: 50%;
 	height: 10px;
 	background-color: #e4dac9;
+	pointer-events: none;
 	border-radius: 10rem;
 	text-align: center;
 	display: flex;
@@ -47,15 +51,17 @@
 	display: block;
 	padding: 1em;
 }
-.todo-container .pulley:hover {
+.trigger:hover .pulley {
+	cursor: pointer;
+	height: 15px;
+	background-color: #8f826a;
+}
+.pulley.trigger:hover {
 	cursor: pointer;
 	height: 15px;
 	background-color: #8f826a;
 }
 
-.todo-container .pulley:hover p {
-	display: none;
-}
 .todo-container .content {
 	display: flex;
 	align-items: flex-start;
@@ -130,6 +136,7 @@
 .todo-container form input:last-child {
 	border: 1px solid #5baaab;
 	box-shadow: none;
+	font-size: 1rem;
 	border-radius: 10px;
 
 	background-color: #5baaab;
@@ -156,12 +163,18 @@
 	padding: 1rem;
 	background-color: #fff;
 	border-radius: 25em;
+	position: relative;
 	aspect-ratio: 1/1;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	color: #55b7a3;
+}
+
+.tdremove svg {
+	pointer-events: none;
+	position: absolute;
 }
 
 .tdremove:hover,
@@ -175,6 +188,9 @@
 	height: calc(100% + 2em);
 }
 
+.trigger:hover {
+	cursor: pointer;
+}
 @media only screen and (max-width: 1100px) {
 	.todo-container {
 		left: 0;
@@ -192,5 +208,11 @@
 	.todo-container form input:last-child {
 		margin-top: 10px;
 		width: 100%;
+	}
+}
+
+@media only screen and (max-height: 500px) {
+	.todo-container {
+		display: none;
 	}
 }

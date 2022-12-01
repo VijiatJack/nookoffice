@@ -1,0 +1,63 @@
+---
+import Button from "./Button.astro";
+---
+
+<div class="creds">
+	<div class="contents">
+		<div class="btn-group">
+			<Button
+				url="https://ko-fi.com/clasernaj"
+				value="Donate"
+				icon="gg-heart"
+				target="_blank"
+			/>
+			<Button
+				url="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.nookoffice.live&text=Staying%20on%20top%20of%20my%20work%20w/%20Animal%20Crossing%20music%20%3A%29"
+				value="Share"
+				icon="gg-share"
+				target="_blank"
+			/>
+			<Button url="/?embed=true" value="Embed" icon="gg-git-branch" target="" />
+		</div>
+		<p>
+			developed by <a href="https://github.com/cjlaserna" target="_blank">
+				@clasernaj</a
+			>
+		</p>
+		<p>
+			<a href="https://github.com/cjlaserna/nookoffice">
+				view artists, project files, etc.
+			</a>
+		</p>
+	</div>
+</div>
+
+<style>
+	.creds p,
+	.creds a {
+		font-size: 0.75rem;
+		color: #000;
+		text-align: left;
+	}
+	.creds {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		margin-left: 10px;
+		align-items: center;
+	}
+	.contents {
+		max-width: 500px;
+	}
+	.btn-group {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 10px;
+		width: 100%;
+		flex-wrap: wrap;
+
+		flex-direction: row;
+		gap: 10px;
+	}
+</style>

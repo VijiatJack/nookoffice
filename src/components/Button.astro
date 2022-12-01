@@ -1,0 +1,76 @@
+---
+interface Props {
+	value: string;
+	url: string;
+	icon?: string;
+	before?: boolean;
+	target: string;
+}
+
+const { value, url, icon, before, target } = Astro.props;
+---
+
+{
+	icon ? (
+		before ? (
+			<a class="btn" href={url} target={target}>
+				<span class={icon} id="before" /> {value}
+			</a>
+		) : (
+			<a class="btn" href={url} target={target}>
+				{value} <span class={icon} />
+			</a>
+		)
+	) : (
+		<a class="btn" href={url} target={target}>
+			{" "}
+			{value}
+		</a>
+	)
+}
+
+<!-- style -->
+<style>
+	a.btn {
+		padding: 1rem;
+		line-height: 0;
+		height: 1em;
+		max-height: 1em;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: #5baaab;
+		font-size: 1rem;
+		color: #fff;
+		border-radius: 10px;
+
+		text-decoration: none;
+		font-weight: normal;
+	}
+	a.btn:hover {
+		background-color: #376a6a;
+		cursor: pointer;
+	}
+	a.btn span {
+		aspect-ratio: 1/1;
+		max-width: 10px;
+		max-height: 10px;
+
+		position: relative;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	a.btn span#before {
+		margin-right: 0.5rem;
+		margin-left: 0;
+	}
+	a.btn span {
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+	}
+</style>

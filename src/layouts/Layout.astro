@@ -11,35 +11,37 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link href="https://css.gg/css" rel="stylesheet" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script>
+			const url = new URL(window.location.toString());
+			const searchParams = url.searchParams;
+			if (searchParams.get("embed") == "true") {
+				document.getElementsByTagName("body")[0].style.backgroundImage = "none";
+				document.getElementsByTagName("body")[0].style.backgroundColor =
+					"transparent";
+
+				const feedback = document.getElementById("feedback");
+				if (feedback) {
+					document.getElementById("feedback").innerHTML = "Press to Play..";
+				}
+
+				navigator.clipboard.writeText(window.location.toString());
+				alert(
+					"Copied to clipboard and ready to paste on to Notion (or wherever you want!)."
+				);
+			}
+		</script>
 	</head>
 	<body>
 		<slot />
-		<div class="creds">
-			<p>
-				developed by <a href="https://github.com/cjlaserna" target="_blank">
-					@clasernaj</a
-				>
-			</p>
-			<p>
-				<a href="https://github.com/cjlaserna/nookoffice">
-					view artists, project files, etc.
-				</a>
-			</p>
-		</div>
 	</body>
 </html>
 <style is:global>
 	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			#da62c4 30%,
-			white 60%
-		);
+		background-color: transparent;
 	}
 	html {
 		font-family: system-ui, sans-serif;
@@ -53,6 +55,7 @@ const { title } = Astro.props;
 
 		width: 100vw;
 		height: 100vh;
+		overflow: clip;
 
 		margin: 0;
 		padding: 0;
@@ -82,34 +85,5 @@ const { title } = Astro.props;
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
 			DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-
-	.creds {
-		position: absolute;
-		top: 0;
-		left: 0;
-		padding: 1rem;
-	}
-	.creds p,
-	.creds a {
-		font-size: 0.75rem;
-		color: #000;
-		z-index: -1;
-	}
-
-	@media only screen and (max-width: 1100px) {
-		.creds p,
-		.creds a {
-			color: #fff;
-		}
-
-		.creds {
-			top: 0;
-			left: 0;
-			right: 0;
-			margin: 1rem auto;
-
-			text-align: center;
-		}
 	}
 </style>

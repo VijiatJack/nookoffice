@@ -152,6 +152,10 @@ input[type="range"]:focus::-ms-fill-upper {
 	.ctrl-wrapper:last-child {
 		margin-right: 0;
 	}
+
+	.right-ctrl {
+		margin-bottom: 0;
+	}
 }
 
 @media only screen and (max-width: 650px) {
