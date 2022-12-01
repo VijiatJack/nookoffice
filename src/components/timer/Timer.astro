@@ -1,0 +1,155 @@
+---
+interface Props {
+	end: number;
+}
+
+const { end } = Astro.props;
+---
+
+<div class="demo-preview">
+	<div class="progress progress-striped active">
+		<div
+			style="width: 45%;"
+			class="progress-bar"
+			id="progressBar"
+			data-end={end}
+		>
+		</div>
+	</div>
+	<span class="time" id="current">00:00</span>
+	<span class="divider">&nbsp;/&nbsp;</span>
+	<span class="time">{end < 10 ? `0` : ``}{end}:00</span>
+</div>
+<script>
+	let endDate = new Date();
+	let progressBar = document.getElementById("progressBar");
+
+	const data = progressBar?.dataset.end;
+	const end = data ? parseInt(data) : 0;
+
+	endDate.setMinutes(endDate.getMinutes() + end);
+	function getDistance(start: Date, end: Date) {
+		return end.getTime() - start.getTime();
+	}
+
+	var x = setInterval(function () {
+		var distance = getDistance(new Date(), endDate);
+
+		// Time calculations for minutes and seconds
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+		var progress = Math.round((Math.trunc(end - minutes - 1) / end) * 100);
+
+		// displaying text
+		let textProgress = document.getElementById("current");
+		if (textProgress) {
+			textProgress.innerHTML = `${
+				Math.trunc(end - minutes - 1) < 10 ? "0" : ""
+			}${Math.trunc(end - minutes - 1)}:${
+				Math.trunc(60 - seconds) < 10 ? "0" : ""
+			}${60 - seconds}`;
+		}
+		// for progress bar
+		let visualProgress = document.getElementById("progressBar");
+		if (visualProgress) {
+			visualProgress.style.width = `${progress}%`;
+		}
+
+		// If the count down is finished, write some text
+		if (distance < 0) {
+			clearInterval(x);
+			// play noise
+			alert("Done");
+		}
+	}, 1000);
+
+	function stopTimer() {
+		if (x) {
+			clearInterval(x);
+		}
+	}
+</script>
+<style>
+	.demo-preview {
+		padding-top: 100px;
+		padding-bottom: 10px;
+		margin: auto;
+		width: 50%;
+		text-align: center;
+		display: block;
+	}
+	.progress {
+		background-color: #fafafa;
+		border-radius: 25px;
+		box-shadow: none;
+		height: 25px;
+		display: flex;
+		justify-content: flex-start;
+		border-bottom: 1px dashed rgba(0, 0, 0, 1);
+	}
+
+	.progress-bar {
+		background-color: #f1cc19;
+		box-shadow: none;
+		color: #71681d;
+		font-weight: 700;
+		font-size: 1.5rem;
+	}
+
+	@-webkit-keyframes progress-bar-stripes {
+		from {
+			background-position: 40px 0;
+		}
+		to {
+			background-position: 0 0;
+		}
+	}
+	@keyframes progress-bar-stripes {
+		from {
+			background-position: 40px 0;
+		}
+		to {
+			background-position: 0 0;
+		}
+	}
+	.progress.active .progress-bar,
+	.progress-bar.active {
+		-webkit-animation: progress-bar-stripes 2s linear infinite;
+		-o-animation: progress-bar-stripes 2s linear infinite;
+		animation: progress-bar-stripes 2s linear infinite;
+	}
+	.progress-striped .progress-bar,
+	.progress-bar-striped {
+		background-image: -webkit-linear-gradient(
+			45deg,
+			rgba(255, 255, 255, 0.15) 25%,
+			transparent 25%,
+			transparent 50%,
+			rgba(255, 255, 255, 0.15) 50%,
+			rgba(255, 255, 255, 0.15) 75%,
+			transparent 75%,
+			transparent
+		);
+		background-image: -o-linear-gradient(
+			45deg,
+			rgba(255, 255, 255, 0.15) 25%,
+			transparent 25%,
+			transparent 50%,
+			rgba(255, 255, 255, 0.15) 50%,
+			rgba(255, 255, 255, 0.15) 75%,
+			transparent 75%,
+			transparent
+		);
+		background-image: linear-gradient(
+			45deg,
+			rgba(255, 255, 255, 0.15) 25%,
+			transparent 25%,
+			transparent 50%,
+			rgba(255, 255, 255, 0.15) 50%,
+			rgba(255, 255, 255, 0.15) 75%,
+			transparent 75%,
+			transparent
+		);
+		background-size: 40px 40px;
+	}
+</style>

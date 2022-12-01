@@ -1,6 +1,7 @@
 ---
 import "./todo.css";
 import Creds from "./Creds.astro";
+import Timer from "./timer/Timer.astro";
 ---
 
 <script>
@@ -141,6 +142,7 @@ import Creds from "./Creds.astro";
 				<input type="submit" value="Create" />
 			</form>
 			<Creds />
+			<Timer end={30} />
 		</div>
 	</div>
 </div>
