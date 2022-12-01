@@ -4,26 +4,52 @@ import "./controls.css";
 
 <script>
 	import YoutubePlayer from "yt-player";
+
 	const player = new YoutubePlayer("#player", {
 		autoplay: true,
 		keyboard: false,
 		controls: false,
 		annotations: false,
 	});
+
+	const rainPlayer = new YoutubePlayer("#player2", {
+		autoplay: true,
+		keyboard: false,
+		controls: false,
+		annotations: false,
+	});
+
+	function layerRain() {
+		rainPlayer.load("bunZqTrXufI", true);
+		rainPlayer.setVolume(50);
+
+		if (feedback) {
+			feedback.innerHTML = "Layering Rain...";
+		}
+	}
+
+	const players = [rainPlayer, player];
+
 	const feedback = document.getElementById("feedback");
 	player.load("44MCworZf78");
 	player.setVolume(100);
 
 	function play() {
-		player.unMute();
-		player.play();
+		players.forEach((ytplayer) => {
+			ytplayer.unMute();
+			ytplayer.play();
+		});
+
 		if (feedback) {
 			feedback.innerHTML = "Playing...";
 		}
 	}
 	function pause() {
-		player.mute();
-		player.pause();
+		players.forEach((ytplayer) => {
+			ytplayer.mute();
+			ytplayer.pause();
+		});
+
 		if (feedback) {
 			feedback.innerHTML = "Paused";
 		}
@@ -49,6 +75,9 @@ import "./controls.css";
 		var volume;
 		volumeControl.addEventListener("input", () => {
 			volume = volumeControl.value;
+			players.forEach((ytplayer) => {
+				player.setVolume(parseFloat(volume) / 2);
+			});
 			player.setVolume(parseFloat(volume));
 		});
 	});
@@ -65,6 +94,19 @@ import "./controls.css";
 					break;
 				case "refresh":
 					refreshGIF();
+					break;
+				case "layerRain":
+					if (rainPlayer.getDuration() <= 0 || !rainPlayer.getDuration()) {
+						layerRain();
+					} else if (
+						rainPlayer.getState() == "paused" ||
+						rainPlayer.getState() == "unstarted" ||
+						rainPlayer.getState() == "buffering"
+					) {
+						rainPlayer.play();
+					} else {
+						rainPlayer.pause();
+					}
 					break;
 				default:
 					null;
@@ -88,6 +130,12 @@ import "./controls.css";
 					if (feedback) {
 						feedback.innerHTML =
 							"<span class='feedback'>Press to Refresh GIF..</span>";
+					}
+					break;
+				case "layerRain":
+					if (feedback) {
+						feedback.innerHTML =
+							"<span class='feedback'>Press to Layer Rain..</span>";
 					}
 					break;
 			}
@@ -241,11 +289,13 @@ import "./controls.css";
 <div class="player-controls">
 	<div class="hidden">
 		<div loop="1" id="player"></div>
+		<div loop="1" id="player2"></div>
 	</div>
 	<div class="ctrl-wrapper">
 		<img class="control" id="pause" src="./player-controls/pause.svg" />
 		<img class="control" id="play" src="./player-controls/play.svg" />
 		<img class="control" id="refresh" src="./player-controls/refresh.svg" />
+		<img class="control" id="layerRain" src="./player-controls/rain.svg" />
 	</div>
 	<p id="feedback">
 		Press to Play Manually. <span style="color: red;"
