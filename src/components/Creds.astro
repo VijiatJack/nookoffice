@@ -48,7 +48,8 @@ import Button from "./Button.astro";
 		display: flex;
 		justify-content: flex-end;
 		margin-left: 10px;
-		align-items: center;
+		align-items: flex-end;
+		height: 100%;
 	}
 	.contents {
 		margin-top: 5px;
@@ -90,6 +91,11 @@ import Button from "./Button.astro";
 			text-align: center !important;
 			margin: 0 auto !important;
 			right: unset;
+		}
+
+		.creds {
+			justify-content: center;
+			align-items: center;
 		}
 	}
 </style>
