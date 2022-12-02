@@ -1,6 +1,11 @@
 .todo-container * {
 	transition: all 0.25s ease;
 }
+
+.todo-container form,
+.todo-container input {
+	transition: none;
+}
 .todo-container .content {
 	transition: max-height 0.25s ease-in;
 }
