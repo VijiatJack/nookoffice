@@ -12,3 +12,24 @@
 	-webkit-appearance: none;
 	width: 100%;
 }
+
+.selectTimer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.selectTimer img {
+	aspect-ratio: 1/1;
+	max-width: 2rem;
+	max-height: 2rem;
+}
+
+.selectTimer .container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+}

@@ -233,7 +233,7 @@
 	}
 	.todo-container.active {
 		height: 100vh !important;
-		top: -10px;
+		top: -1.2rem;
 		bottom: unset;
 	}
 }

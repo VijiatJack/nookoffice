@@ -4,48 +4,64 @@ import "./timer.css";
 ---
 
 <div class="selectTimer" id="selectTimerContainer">
-	<img src="/time.svg" />
-	<select name="selectTimer" class="select" id="selectTimer" autocomplete="off">
-		<option selected disabled hidden> </option>
-		<option value="5">5 Minutes</option>
-		<option value="15">15 Minutes</option>
-		<option value="30">30 Minutes</option>
-	</select>
-</div>
-<script>
-	function updateTimer(end: number) {
-		let container = document.getElementById("selectTimerContainer");
-		if (container) {
-			container.innerHTML = `<div class="demo-preview">
-	<div class="txt">
-		<span class="time" id="current">00:00</span>
-		<span class="divider">&nbsp;/&nbsp;</span>
-		<span class="time">${end < 10 ? `0` : ``}${end}:00</span>
-    
-
-        </div>
-	<div class="progress progress-striped active">
-		<div
-			style="width: 0%;"
-			class="progress-bar"
-			id="progressBar"
-			data-end=${end}
-		>
+	<div class="demo-preview" id="progBarContainer">
+		<div class="txt">
+			<span class="time" id="current">00:00</span>
+			<span class="divider">&nbsp;/&nbsp;</span>
+			<span class="time" id="end">00:00</span>
+		</div>
+		<div class="progress progress-striped active">
+			<div
+				style="width: 0%;"
+				class="progress-bar"
+				id="progressBar"
+				data-end="0"
+			>
+			</div>
 		</div>
 	</div>
-</div>`;
+	<div class="container">
+		<select
+			name="selectTimer"
+			class="select"
+			id="selectTimer"
+			autocomplete="off"
+		>
+			<option selected disabled hidden id="timerFeed">Start a timer</option>
+			<option value="5">5 Minutes</option>
+			<option value="15">15 Minutes</option>
+			<option value="30">30 Minutes</option>
+		</select>
+		<audio src="/timer.wav" id="soundCue"></audio>
+	</div>
+</div>
+
+<!-- script -->
+<script>
+	function updateTimer(end: number) {
+		let container = document.getElementById("progBarContainer");
+		if (container) {
+			container.style.display = "block";
+		}
+
+		let progressBar = document.getElementById("progressBar");
+		var data = progressBar?.dataset;
+		if (data) {
+			data.end = end.toString();
 		}
 
 		let endDate = new Date();
-		let progressBar = document.getElementById("progressBar");
-
-		const data = progressBar?.dataset.end;
-
 		endDate.setMinutes(endDate.getMinutes() + end);
+		let endText = document.getElementById("end");
+		if (endText) {
+			endText.innerHTML = `${end < 10 ? "0" + end : end}:00`;
+		}
+
 		function getDistance(start: Date, end: Date) {
 			return end.getTime() - start.getTime();
 		}
 
+		// timer
 		var x = setInterval(function () {
 			var distance = getDistance(new Date(), endDate);
 
@@ -94,14 +110,15 @@ import "./timer.css";
 			// If the count down is finished, write some text
 			if (distance < 0 || progressBar?.dataset.end == "0") {
 				clearInterval(x);
+				(document.getElementById("soundCue") as HTMLAudioElement)?.play();
 				alert("Timer finished");
-				location.reload();
-				// play noise
+			} else if (progressBar?.dataset.end != end.toString()) {
+				clearInterval(x);
 			}
 		}, 1000);
 	}
 
-	const selector = document.querySelector("#selectTimer") as HTMLInputElement;
+	const selector = document.querySelector("#selectTimer") as HTMLSelectElement;
 
 	selector?.addEventListener("input", () => {
 		var selectorValue = selector.value;
@@ -120,17 +137,4 @@ import "./timer.css";
 		}
 	});
 </script>
-<style>
-	.selectTimer {
-		width: 100%;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		gap: 10px;
-	}
-	.selectTimer img {
-		aspect-ratio: 1/1;
-		max-width: 2rem;
-		max-height: 2rem;
-	}
-</style>
+<style></style>
