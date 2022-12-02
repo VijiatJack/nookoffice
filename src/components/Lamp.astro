@@ -5,14 +5,18 @@
 	var lamp = document.getElementById("light-switch");
 	var film = document.getElementById("film");
 
-	film.style.display = "none";
+	if (film) {
+		film.style.display = "none";
+	}
 
 	lamp?.addEventListener("click", () => {
 		lamp?.classList.add("pull-down");
 		if (film?.style.display == "none") {
 			film.style.display = "block";
 		} else {
-			film.style.display = "none";
+			if (film) {
+				film.style.display = "none";
+			}
 		}
 	});
 
