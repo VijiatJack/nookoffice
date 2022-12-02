@@ -4,7 +4,6 @@ interface Props {
 }
 
 const { end } = Astro.props;
-import "timer.css";
 import "select.css";
 ---
 
@@ -26,74 +25,4 @@ import "select.css";
 </div>
 
 <!-- timer functionality -->
-<script>
-	let endDate = new Date();
-	let progressBar = document.getElementById("progressBar");
-
-	const data = progressBar?.dataset.end;
-	const end = data ? parseInt(data) : 0;
-
-	endDate.setMinutes(endDate.getMinutes() + end);
-	function getDistance(start: Date, end: Date) {
-		return end.getTime() - start.getTime();
-	}
-
-	var x = setInterval(function () {
-		var distance = getDistance(new Date(), endDate);
-
-		// Time calculations for minutes and seconds
-		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-		var progress = Math.round((Math.trunc(end - minutes - 1) / end) * 100);
-
-		// displaying text
-		let textProgress = document.getElementById("current");
-
-		let minutesInvert = Math.round(end - minutes - 1);
-		let secondsInvert = Math.round(60 - seconds);
-
-		if (textProgress) {
-			var text = "";
-
-			if (secondsInvert == 60) {
-				minutesInvert += 1;
-				secondsInvert = 0;
-			}
-
-			if (minutesInvert < 10) {
-				text += "0";
-				text += minutesInvert;
-			} else {
-				text += minutesInvert;
-			}
-
-			text += ":";
-			if (secondsInvert < 10) {
-				text += "0";
-				text += secondsInvert;
-			} else {
-				text += secondsInvert;
-			}
-
-			textProgress.innerHTML = text;
-		}
-		// for progress bar
-		let visualProgress = document.getElementById("progressBar");
-		if (visualProgress) {
-			visualProgress.style.width = `${progress}%`;
-		}
-
-		// If the count down is finished, write some text
-		if (distance < 0) {
-			clearInterval(x);
-			// play noise
-			alert("Done");
-		}
-	}, 1000);
-
-	function stopTimer() {
-		if (x) {
-			clearInterval(x);
-		}
-	}
-</script>
+<script></script>

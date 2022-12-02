@@ -202,6 +202,18 @@
 	flex: 1;
 }
 @media only screen and (max-width: 1100px) {
+	.todo-btm > * {
+		flex: unset;
+	}
+	.todo-btm div:first-child {
+		margin-bottom: 10px;
+	}
+	.todo-btm {
+		flex-direction: column;
+		width: calc(100% - 1rem);
+	}
+}
+@media only screen and (max-width: 1100px) {
 	.todo-container {
 		left: 0;
 		right: 0;
@@ -218,6 +230,11 @@
 	.todo-container form input:last-child {
 		margin-top: 10px;
 		width: 100%;
+	}
+	.todo-container.active {
+		height: 100vh !important;
+		top: -10px;
+		bottom: unset;
 	}
 }
 

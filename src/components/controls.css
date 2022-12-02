@@ -169,3 +169,12 @@ input[type="range"]:focus::-ms-fill-upper {
 		flex-direction: column;
 	}
 }
+
+@media only screen and (max-height: 500px) {
+	.ctrl-wrapper {
+		margin-bottom: 0;
+	}
+	.right-ctrl {
+		max-height: 50px;
+	}
+}

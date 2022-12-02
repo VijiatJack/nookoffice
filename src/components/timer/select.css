@@ -1,0 +1,14 @@
+.select {
+	border: none;
+	border-radius: 15px;
+	color: #fffdf2;
+	font-weight: 500;
+	font-size: 1.2rem;
+	background-color: #5baaab;
+	padding: 1rem 2rem;
+	background: url("https://raw.githubusercontent.com/cjlaserna/clasernaj-blog/master/Vector%2036.svg")
+		no-repeat right #5baaab;
+	background-position-x: calc(100% - 25px);
+	-webkit-appearance: none;
+	width: 100%;
+}

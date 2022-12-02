@@ -1,7 +1,7 @@
 ---
 import "./todo.css";
 import Creds from "./Creds.astro";
-import Timer from "./timer/Timer.astro";
+import Timer from "./Timer.astro";
 ---
 
 <script>
@@ -23,10 +23,12 @@ import Timer from "./timer/Timer.astro";
 				pull.classList.add("trigger");
 			}
 			container.classList.remove("trigger");
+			container.classList.add("active");
 
 			contents.style.height = "100%";
 			contents.style.maxHeight = "100vh";
-			contents.style.padding = "2rem 0";
+			contents.style.paddingTop = "2rem";
+			contents.style.paddingBottom = "1rem";
 
 			container.style.margin = "auto";
 			container.style.height = "100%";
@@ -42,6 +44,7 @@ import Timer from "./timer/Timer.astro";
 			e.target == pull
 		) {
 			container.classList.add("trigger");
+			container.classList.remove("active");
 
 			contents.style.height = "0px";
 			contents.style.padding = "0px";
@@ -142,8 +145,8 @@ import Timer from "./timer/Timer.astro";
 				<input type="submit" value="Create" />
 			</form>
 			<div class="todo-btm">
+				<Timer />
 				<Creds />
-				<Timer end={30} />
 			</div>
 		</div>
 	</div>
