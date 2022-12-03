@@ -1,9 +1,10 @@
 # NookOffice - Hourly Animal Crossing Music
 
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [![Site Status](https://img.shields.io/website-up-down-green-red/https/nookoffice.live.svg)](https://nookoffice.live/)
+<br />
 ![Site Image](/public/imgprev.png)
 NookOffice hosts hourly rotating Animal Crossing tracks for relaxing, studying, or working complete with timers & to-do lists.
-
+<br/>
 ![Site Image](/public/timerprev.png)
 
 ### Current Features
