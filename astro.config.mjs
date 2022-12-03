@@ -6,7 +6,15 @@ import netlify from "@astrojs/netlify/functions";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [react()],
+	integrations: [
+		react(),
+		partytown({
+			// Adds dataLayer.push as a forwarding-event.
+			config: {
+				forward: ["dataLayer.push"],
+			},
+		}),
+	],
 	vite: {
 		ssr: {
 			noExternal: ["astro", "@astrojs/image"],
@@ -15,3 +23,4 @@ export default defineConfig({
 	output: "server",
 	adapter: netlify(),
 });
+
