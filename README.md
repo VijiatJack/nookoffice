@@ -19,6 +19,11 @@ NookOffice hosts hourly rotating Animal Crossing tracks for relaxing, studying, 
 - More Animal Crossing franchise music
 - Notepad
 
+## Sources
+
+- Saino (Artist)
+- Most of the other GIFs are from the official Animal Crossing Movie / Anime
+
 ---
 
 [![Donate](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/clasernaj)
