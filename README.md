@@ -4,6 +4,7 @@
 <br />
 NookOffice hosts hourly rotating Animal Crossing tracks for relaxing, studying, or working complete with timers & to-do lists.
 <br/>
+<br/>
 ![Site Image](/public/timerprev.png)
 
 ### Current Features
@@ -23,6 +24,7 @@ NookOffice hosts hourly rotating Animal Crossing tracks for relaxing, studying, 
 
 - Saino (Artist)
 - Most of the other GIFs are from the official Animal Crossing Movie / Anime
+  <br/>
 
 ---
 
