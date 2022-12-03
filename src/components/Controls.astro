@@ -5,6 +5,7 @@ import "./controls.css";
 <script>
 	import YoutubePlayer from "yt-player";
 
+	// Main ACNH Player
 	const player = new YoutubePlayer("#player", {
 		autoplay: true,
 		keyboard: false,
@@ -12,6 +13,7 @@ import "./controls.css";
 		annotations: false,
 	});
 
+	// Rain Player
 	const rainPlayer = new YoutubePlayer("#player2", {
 		autoplay: true,
 		keyboard: false,
@@ -19,21 +21,14 @@ import "./controls.css";
 		annotations: false,
 	});
 
-	function layerRain() {
-		rainPlayer.load("bunZqTrXufI", true);
-		rainPlayer.setVolume(50);
-
-		if (feedback) {
-			feedback.innerHTML = "Layering Rain...";
-		}
-	}
-
 	const players = [rainPlayer, player];
-
 	const feedback = document.getElementById("feedback");
+
+	// general set up
 	player.load("44MCworZf78");
 	player.setVolume(100);
 
+	// functions for controls
 	function play() {
 		players.forEach((ytplayer) => {
 			ytplayer.unMute();
@@ -66,8 +61,20 @@ import "./controls.css";
 		}
 	}
 
+	function layerRain() {
+		rainPlayer.load("bunZqTrXufI", true);
+		rainPlayer.setVolume(50);
+
+		if (feedback) {
+			feedback.innerHTML = "Layering Rain...";
+		}
+
+		rainPlayer.on("ended", () => {
+			layerRain();
+		});
+	}
+
 	// event handling
-	// Find all buttons with the `alert` class on the page.
 	const controls = document.querySelectorAll("img.control");
 	const volumeControls = document.querySelectorAll("#range");
 
@@ -104,14 +111,22 @@ import "./controls.css";
 						rainPlayer.getState() == "buffering"
 					) {
 						rainPlayer.play();
+						if (feedback) {
+							feedback.innerHTML = "Adding rain..";
+						}
 					} else {
 						rainPlayer.pause();
+						if (feedback) {
+							feedback.innerHTML = "No more rain..";
+						}
 					}
 					break;
 				default:
 					null;
 			}
 		});
+
+		// MouseOver Flairs
 		control.addEventListener("mouseover", () => {
 			switch (control.id) {
 				case "pause":
@@ -141,9 +156,8 @@ import "./controls.css";
 			}
 		});
 	});
-	// refresh video
 
-	// time
+	// match current time to music
 	var today = new Date();
 	var timeHours = today.getHours();
 
@@ -231,7 +245,7 @@ import "./controls.css";
 		console.log("Updating...");
 	}
 
-	// declaring vars
+	// Used for displaying a clock
 	var pastHour: any;
 	var timeMonth, timeDay, timeYear, timeMinutes;
 	var visualDate = document.getElementById("locale-date");
@@ -272,20 +286,22 @@ import "./controls.css";
 		}
 	}
 
+	refreshClock();
+	updateTime();
+	updateVideo();
+
 	// when animal crossing video ends
 	player.on("ended", () => {
 		updateVideo();
 	});
 
-	refreshClock();
-	updateTime();
-	updateVideo();
-
+	// every second
 	setInterval(() => {
 		pastHour = timeHours;
 		updateTime();
 	}, 1000);
 
+	// every minute
 	setInterval(() => {
 		refreshClock();
 	}, 60000);
