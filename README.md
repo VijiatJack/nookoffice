@@ -1,50 +1,26 @@
-# Welcome to [Astro](https://astro.build)
+# NookOffice - Hourly Animal Crossing Music
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [![Site Status](https://img.shields.io/website-up-down-green-red/https/nookoffice.live.svg)](https://nookoffice.live/)
+![Site Image](/public/imgprev.png)
+NookOffice hosts hourly rotating Animal Crossing tracks for relaxing, studying, or working complete with timers & to-do lists.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Site Image](/public/timerprev.png)
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+### Current Features
 
+- Hourly rotating ACNH music
+- Layering rain sounds
+- Locally Saved To-do List
+- 5, 10, 15 Minute Timers
 
-## 🚀 Project Structure
+### Future Plans
 
-Inside of your Astro project, you'll see the following folders and files:
+- Better timer
+- More Animal Crossing franchise music
+- Notepad
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+---
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[![Donate](https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/clasernaj)
+[![Notion Compatible](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)](https://nookoffice.live/?embed=true)
+[![Figma Mockup](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/file/TIMSI0wSvnRDxgad2BNZv8/Nook-Office?node-id=0%3A1&t=xeY0HWG6hw3KkrcP-1)
