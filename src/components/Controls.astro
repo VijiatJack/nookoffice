@@ -272,6 +272,11 @@ import "./controls.css";
 		}
 	}
 
+	// when animal crossing video ends
+	player.on("ended", () => {
+		updateVideo();
+	});
+
 	refreshClock();
 	updateTime();
 	updateVideo();
