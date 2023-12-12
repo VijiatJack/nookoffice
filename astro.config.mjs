@@ -23,5 +23,7 @@ export default defineConfig({
 	},
 	output: "server",
 	adapter: netlify(),
+	site: 'https://vijiatjack.github.io',
+  	base: '/nookoffice',
 });
 
