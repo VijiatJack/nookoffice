@@ -1,5 +1,5 @@
-## This is a workaround while @cjlaserna is not being able to update her project
-- Support @cjlaserna :)
+## This is a workaround while [@cjlaserna](https://github.com/cjlaserna) is not being able to update her project
+- Support [@cjlaserna](https://github.com/cjlaserna)'s projects. :)
 
 # [NookOffice - Hourly Animal Crossing Music](https://nookoffice.live/)
 
