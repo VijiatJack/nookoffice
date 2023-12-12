@@ -1,3 +1,6 @@
+## This is a workaround while @cjlaserna is not being able to update her project
+- Support @cjlaserna :)
+
 # [NookOffice - Hourly Animal Crossing Music](https://nookoffice.live/)
 
 ![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [![Site Status](https://img.shields.io/website-up-down-green-red/https/nookoffice.live.svg)](https://nookoffice.live/)
