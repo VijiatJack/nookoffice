@@ -3,9 +3,6 @@ import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
-import netlify from "@astrojs/netlify/functions";
-
-// https://astro.build/config
 export default defineConfig({
 	integrations: [
 		react(),
@@ -21,9 +18,7 @@ export default defineConfig({
 			noExternal: ["astro", "@astrojs/image"],
 		},
 	},
-	output: "server",
-	adapter: netlify(),
 	site: 'https://vijiatjack.github.io',
-  	base: '/nookoffice',
+  	base: '/nookoffice'
 });
 
