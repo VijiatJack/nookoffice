@@ -79,7 +79,7 @@ import "./controls.css";
 	const volumeControls = document.querySelectorAll("#range");
 
 	volumeControls.forEach((volumeControl) => {
-		var volume;
+		var volume: number;
 		volumeControl.addEventListener("input", () => {
 			volume = parseFloat(volumeControl.value);
 			players.forEach((ytplayer) => {
