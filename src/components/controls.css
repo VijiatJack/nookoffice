@@ -10,6 +10,7 @@
 	background-color: #5baaab;
 	border-radius: 25px;
 }
+
 .player-controls img.control {
 	width: 35px;
 	height: 35px;
@@ -17,10 +18,12 @@
 	margin-right: 15px;
 	opacity: 1;
 }
+
 .player-controls img.control:hover {
 	cursor: pointer;
 	opacity: 0.75;
 }
+
 .hidden {
 	visibility: hidden;
 	position: absolute;
@@ -30,93 +33,90 @@
 	height: 1px;
 	/* pointer-events: none; */
 }
+
 #feedback {
 	font-size: 1rem;
 	color: #fffdf2;
 	margin: 0;
 	padding: 0;
 }
+
 .right-ctrl {
 	flex-grow: 1;
 	display: flex;
 	justify-content: flex-end;
 }
-#range {
-	background-color: transparent;
-}
 
 /* slider */
+/*Range Reset*/
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+	width: 15rem;
+}
+
+/* Removes default focus */
 input[type="range"]:focus {
 	outline: none;
 }
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
 input[type="range"]::-webkit-slider-runnable-track {
-	width: 100%;
-	height: 11px;
-	cursor: pointer;
-	animate: 0.2s;
-	background: #fff;
-	border-radius: 50px;
+	background-color: #fffdf2;
+	border-radius: 0.5rem;
+	height: 0.5rem;
 }
+
+/* slider thumb */
 input[type="range"]::-webkit-slider-thumb {
-	border: 4px solid #5baaab;
-	height: 18px;
-	width: 18px;
-	border-radius: 4px;
-	background: #5baaab;
-	cursor: pointer;
+	-webkit-appearance: none;
+	/* Override default look */
+	appearance: none;
+	margin-top: -8px;
+	/* Centers thumb on the track */
+
+	/*custom styles*/
+	background-color: #5baaab;
+	height: 1.5rem;
+	width: 1.5rem;
+	border: 3px solid #fffdf2;
+	border-radius: 3px;
 }
-input[type="range"]:focus::-webkit-slider-runnable-track {
-	background: #fff;
+
+input[type="range"]:focus::-webkit-slider-thumb {
+	border: 3px solid #fffdf2;
+	outline: none;
+	/* outline-offset: 0.125rem; */
 }
+
+/******** Firefox styles ********/
+/* slider track */
 input[type="range"]::-moz-range-track {
-	width: 100%;
-	height: 11px;
-	cursor: pointer;
-	animate: 0.2s;
-	box-shadow: 0px 0px 0px #000000;
-	background: #fff;
-	border-radius: 50px;
-	border: 0px solid #000000;
+	background-color: #fffdf2;
+	border-radius: 0.5rem;
+	height: 0.5rem;
 }
+
+/* slider thumb */
 input[type="range"]::-moz-range-thumb {
-	border: 4px solid #fff;
-	height: 18px;
-	width: 18px;
-	border-radius: 4px;
-	background: #5baaab;
-	cursor: pointer;
+	border: none;
+	/*Removes extra border that FF applies*/
+	border-radius: 0;
+	/*Removes default border-radius that FF applies*/
+
+	/*custom styles*/
+	background-color: #5cd5eb;
+	height: 2rem;
+	width: 1rem;
 }
-input[type="range"]::-ms-track {
-	width: 100%;
-	height: 11px;
-	cursor: pointer;
-	animate: 0.2s;
-	background: transparent;
-	border-color: transparent;
-	color: transparent;
-}
-input[type="range"]::-ms-fill-lower {
-	background: #fff;
-	border-radius: 100px;
-}
-input[type="range"]::-ms-fill-upper {
-	background: #fff;
-	border-radius: 100px;
-}
-input[type="range"]::-ms-thumb {
-	margin-top: 1px;
-	border: 4px solid #fff;
-	height: 18px;
-	width: 18px;
-	border-radius: 4px;
-	background: #5baaab;
-	cursor: pointer;
-}
-input[type="range"]:focus::-ms-fill-lower {
-	background: #fff;
-}
-input[type="range"]:focus::-ms-fill-upper {
-	background: #fff;
+
+input[type="range"]:focus::-moz-range-thumb {
+	border: 3px solid #fffdf2;
+	outline: none;
+	/* outline-offset: 0.125rem; */
 }
 
 @media only screen and (max-width: 1100px) {
@@ -125,7 +125,7 @@ input[type="range"]:focus::-ms-fill-upper {
 		flex-direction: column !important;
 	}
 
-	.player-controls > * {
+	.player-controls>* {
 		margin-bottom: 1rem;
 		width: 100%;
 
@@ -133,6 +133,7 @@ input[type="range"]:focus::-ms-fill-upper {
 		justify-content: center;
 		align-items: center;
 	}
+
 	.player-controls p {
 		text-align: left;
 		justify-content: flex-end;
@@ -144,6 +145,7 @@ input[type="range"]:focus::-ms-fill-upper {
 		position: absolute;
 		left: 0;
 	}
+
 	#range {
 		width: 100%;
 		margin: 1rem 0;
@@ -162,6 +164,7 @@ input[type="range"]:focus::-ms-fill-upper {
 	.player-controls p:before {
 		content: "";
 	}
+
 	.player-controls p {
 		text-align: left;
 		justify-content: flex-start;
@@ -174,6 +177,7 @@ input[type="range"]:focus::-ms-fill-upper {
 	.ctrl-wrapper {
 		margin-bottom: 0;
 	}
+
 	.right-ctrl {
 		max-height: 50px;
 	}
