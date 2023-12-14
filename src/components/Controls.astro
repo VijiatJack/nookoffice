@@ -50,7 +50,6 @@ import "./controls.css";
 		}
 	}
 	function refreshGIF() {
-		console.log("clicked");
 		var feed = document.getElementById("feed");
 
 		if (feed) {
@@ -62,11 +61,11 @@ import "./controls.css";
 	}
 
 	function layerRain() {
-		rainPlayer.load("bunZqTrXufI", true);
-		rainPlayer.setVolume(50);
+		rainPlayer.load("q76bMs-NwRk", true);
+		rainPlayer.setVolume(30);
 
 		if (feedback) {
-			feedback.innerHTML = "Layering Rain...";
+			feedback.innerHTML = "It started Raining...";
 		}
 
 		rainPlayer.on("ended", () => {
@@ -112,12 +111,12 @@ import "./controls.css";
 					) {
 						rainPlayer.play();
 						if (feedback) {
-							feedback.innerHTML = "Adding rain..";
+							feedback.innerHTML = "It started raining...";
 						}
 					} else {
 						rainPlayer.pause();
 						if (feedback) {
-							feedback.innerHTML = "No more rain..";
+							feedback.innerHTML = "The rain is gone...";
 						}
 					}
 					break;
@@ -132,25 +131,25 @@ import "./controls.css";
 				case "pause":
 					if (feedback) {
 						feedback.innerHTML =
-							"<span class='feedback'>Press to Pause..</span>";
+							"<span class='feedback'>Press to Pause...</span>";
 					}
 					break;
 				case "play":
 					if (feedback) {
 						feedback.innerHTML =
-							"<span class='feedback'>Press to Play..</span>";
+							"<span class='feedback'>Press to Play...</span>";
 					}
 					break;
 				case "refresh":
 					if (feedback) {
 						feedback.innerHTML =
-							"<span class='feedback'>Press to Refresh GIF..</span>";
+							"<span class='feedback'>Press to Shuffle GIF...</span>";
 					}
 					break;
 				case "layerRain":
 					if (feedback) {
 						feedback.innerHTML =
-							"<span class='feedback'>Press to Layer Rain..</span>";
+							"<span class='feedback'>Press to add Rain sound layer...</span>";
 					}
 					break;
 			}
@@ -242,7 +241,6 @@ import "./controls.css";
 			default:
 				null;
 		}
-		console.log("Updating...");
 	}
 
 	// Used for displaying a clock
