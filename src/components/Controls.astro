@@ -160,9 +160,9 @@ import "./controls.css";
 	var today = new Date();
 	var timeHours = today.getHours();
 
-	function updateVideo() {
+	function updateVideo(autoplay: boolean) {
 		function autoPlay(video: string) {
-			player.load(video, true);
+			player.load(video, autoplay);
 		}
 
 		switch (timeHours) {
@@ -260,7 +260,7 @@ import "./controls.css";
 
 		// update video
 		if (pastHour != timeHours) {
-			updateVideo();
+			updateVideo(true);
 		}
 	}
 
@@ -286,11 +286,11 @@ import "./controls.css";
 
 	refreshClock();
 	updateTime();
-	updateVideo();
+	updateVideo(false);
 
 	// when animal crossing video ends
 	player.on("ended", () => {
-		updateVideo();
+		updateVideo(true);
 	});
 
 	// every second
