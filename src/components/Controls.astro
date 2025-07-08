@@ -260,7 +260,8 @@ import "./controls.css";
 
 		// update video
 		if (pastHour != timeHours) {
-			updateVideo(true);
+			const isPlaying = player.getState() === "playing";
+			updateVideo(isPlaying);
 		}
 	}
 
